@@ -124,7 +124,7 @@ class Punch(object):
                 punctuation = [ propDef.find(c) for c in '= ' ] + [ len(propDef) ]
                 found = min( [ pos for pos in punctuation if pos != -1 ] )
                 name= propDef[:found].rstrip()
-                value= propDef[found:].lstrip(":= ").rstrip()
+                value= os.path.expandvars( propDef[found:].lstrip(":= ").rstrip() )
                 self.propDict[name]= value.strip('"')
             configFile.close()
             
